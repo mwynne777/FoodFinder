@@ -13,5 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/parkertimmerman/GitHub/FoodFinder/src/jars/jcommander-1.35.jar"/>
+	<classpathentry kind="lib" path="/Users/parkertimmerman/GitHub/FoodFinder/src/jars/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/parkertimmerman/GitHub/FoodFinder/src/jars/scribe-1.3.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
