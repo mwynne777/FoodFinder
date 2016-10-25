@@ -23,24 +23,44 @@
 <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
 <link href=”./Bootstrap/css/bootstrap.min.css” rel=”stylesheet” type=”text/css” />
 </head>
+
 <body>
+
 <script src="http://code.jquery.com/jquery.js"></script><!-- Add jQuery -->
 <script type=”text/javascript” src=”./Bootstrap/js/bootstrap.min.js”></script>
+
 <div class="container">
+
 <div class="row">
 <h2 class="col-xs-4 col-xs-offset-4">FoodFinder</h2>
+<img src="../imgs/FoodFinder.png">
 </div>
+
 <div class="row">
 <form action="javaForm" method="post">
 <div class="row userInput col-xs-offset-3 col-xs-4">
  <h5>Your Location: </h5><input type="text" name="userLocation">
 </div>
-<div class="row userInput col-xs-offset-3 col-xs-4"> 
+
+<!--<div class="row userInput col-xs-offset-3 col-xs-4"> 
  <h5>Healthy Food? (y/n)?: </h5><input type="text" name="userHealthy">
+</div>-->
+
+<div class="row userInput col-xs-offset-3 col-xs-4">
+<div class="btn-group" data-togle="buttons">
+  <label class="btn btn-success">
+    <input type="checkbox" autocomplete="off" name="foodOptions" value="healthyOptions"> Healthy Options
+  </label>
+  <label class="btn btn-success">
+    <input type="checkbox" autocomplete="off" name="foodOptions" value="fastFoodOptions" checked > Fast Food
+  </label>
 </div>
+</div>
+
 <div class="row userInput col-xs-offset-3 col-xs-4">
  <input id="submitButton" type="submit" value="Send Information" name="send_button">
 </div>
+
 </form>
 </div>
 </div>
