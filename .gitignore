@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 *.classpath
 *.DS_Store
 ../*.classpath
 ../*.DS_Store
+=======
+*.DS_Store
+*.classpath
+>>>>>>> origin/master
