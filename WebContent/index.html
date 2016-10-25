@@ -1,87 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Insert title here</title>
-
+<title>FoodFinder</title>
 <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-
-
 <style type="text/css">
-
-#submitButton{
-
-margin-top:10px;
-
-}
-
+	#submitButton{
+		margin-top:10px;
+	}
+	img{
+		margin:0px;
+	}
+	body{
+		background-color:white;
+	}
+	form{
+		color:black;
+	}
+	#submitButton{
+		color:black;
+	}
 </style>
-
-
-
 </head>
 
 <body>
-
-<script src="http://code.jquery.com/jquery.js"></script><!-- Add jQuery -->
-
-<script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-
-<script src="http://code.jquery.com/jquery.js"></script><!-- Add jQuery -->
-
-<script type=”text/javascript” src=”../Bootstrap/js/bootstrap.min.js”></script>
-
-
-
-<div class="container">
-
-<div class="row">
-
-<h2 class="col-xs-4 col-xs-offset-4">FoodFinder</h2>
-
-</div>
-
-<div class="row">
-
-<form action="javaForm" method="post">
-
-<div class="row userInput col-xs-offset-3 col-xs-4">
-
- <h5>Your Location: </h5><input type="text" name="userLocation">
-
-</div>
-
-<div class="row userInput col-xs-offset-3 col-xs-4"> 
-
- <h5>Healthy Food? (y/n)?: </h5><input type="text" name="userHealthy">
-
-</div>
-
-<div class="row userInput col-xs-offset-3 col-xs-4">
-
- <input id="submitButton" type="submit" value="Send Information" name="send_button">
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-
-
+	<script src="http://code.jquery.com/jquery.js"></script><!-- Add jQuery -->
+	<script type="text/javascript” src="Bootstrap/js/bootstrap.min.js"></script>
+	<div class="container">
+		<div class="row">
+			<img id="ffTitle" class="col-xs-8 col-xs-offset-2" src="Bootstrap/images/FoodFinder.png" />
+		</div>
+		<div class="row">
+			<form action="javaForm" method="get">
+				<div class="row userInput col-xs-offset-3 col-xs-4">
+ 					<h5>Your Location: </h5><input type="text" name="userLocation">
+				</div>
+				<div class="row userInput col-xs-offset-3 col-xs-4"> 
+ 					<h5>Healthy Food? (y/n)?: </h5><input type="text" name="userHealthy">
+				</div>
+				<div class="row userInput col-xs-offset-3 col-xs-4">
+					<input id="submitButton" type="submit" value="Send Information" name="send_button">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
-
 </html>

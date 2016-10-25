@@ -16,6 +16,7 @@
    <servlet-name>testJavaForm</servlet-name>
    <url-pattern>/javaForm</url-pattern>
   </servlet-mapping>
+  
   <display-name>FoodFinder</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
