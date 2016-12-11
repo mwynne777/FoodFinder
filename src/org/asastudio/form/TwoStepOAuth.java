@@ -1,4 +1,4 @@
-package org.asastudio.form;
+package org.asastudio;
 import org.scribe.builder.api.DefaultApi10a;
 import org.scribe.model.Token;
 

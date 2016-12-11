@@ -1,52 +1,54 @@
-package org.asastudio.form;
+package org.asastudio;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException; 
+import java.util.ArrayList;
 
+import org.asastudio.form.Enumerations.*;
+
+//This class follows the Singleton design pattern
 public class InputModel 
-{
-	private static final String CONSUMER_KEY = "LMRszRj8TrhcJ3vCUFmylQ";
-	private static final String CONSUMER_SECRET = "MKvr9zHKjJ9j6UwQ_VZ2d_2Z67M";
-	private static final String TOKEN = "BKPwyN202k4vzBKsulE4feQljCrsQfAG";
-	private static final String TOKEN_SECRET = "aMpA8Jp4650NxU7v_xEIgEOh9kc";
-	
+{	
+	//Constructor
 	private InputModel()
 	{
 		yelp = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
 	}
 	
-	public void getResturaunts(String type, String location)
+	//Public Methods
+	public void getResturaunts()
 	{
-		String returnedInfo = InputModel.getInputModel().getYelpAPI().searchForBusinessesByLocation(type, location);
-		System.out.println(returnedInfo);
-		JSONParser parser = new JSONParser();
+		ArrayList<String> rawJSON = new ArrayList<String>();
 		
-		try
+		for (FoodOption option : options)
 		{
-			Object rawJSON = parser.parse(returnedInfo);
-			JSONObject jsonObject = (JSONObject)rawJSON;
-			
-			JSONArray rawResturaunts = (JSONArray) jsonObject.get("businesses");
-			Iterator<JSONObject> resturauntIter = rawResturaunts.iterator();
-			while (resturauntIter.hasNext())
+			switch (option)
 			{
-				String name = (String) resturauntIter.next().get("name");
-				System.out.println(name);
+				case HEALTHY:
+					rawJSON.add(yelp.searchForBusinessesByLocation("healthy", pair.getLocation()));
+					break;
+				case FASTFOOD:
+					rawJSON.add(yelp.searchForBusinessesByLocation("mcdonalds", pair.getLocation()));
+					rawJSON.add(yelp.searchForBusinessesByLocation("wendys", pair.getLocation()));
+					rawJSON.add(yelp.searchForBusinessesByLocation("burger king", pair.getLocation()));
+					rawJSON.add(yelp.searchForBusinessesByLocation("pizza hut", pair.getLocation()));
+					break;
+				default:
+					break;
 			}
 		}
-		catch (ParseException e) 
-		{
-			e.printStackTrace();
-		}
+		
+		//Passes data to output model for processing
+		OutputModel.getOutputModel().setJSON(rawJSON);
+		OutputModel.getOutputModel().setLocation(pair);
+		OutputModel.getOutputModel().buildRestaurants();
 	}
-	
-	
+	public void setLocationPair(LocationPair<String, LocationType> pair)
+	{
+		this.pair = pair;
+	}
+	public void setFoodOptions(ArrayList<FoodOption> options)
+	{
+		this.options = options;
+	}
 	public static InputModel getInputModel()
 	{
 		if (iM == null)
@@ -55,12 +57,24 @@ public class InputModel
 		}
 		return iM;
 	}
-	
 	public static YelpAPI getYelpAPI()
 	{
 		return yelp;
 	}
+
+	
+	//Private Member Variables
 	
 	private static YelpAPI yelp;
 	private static InputModel iM;
+	
+	//Keys for YelpAPI
+	private static final String CONSUMER_KEY = "LMRszRj8TrhcJ3vCUFmylQ";
+	private static final String CONSUMER_SECRET = "MKvr9zHKjJ9j6UwQ_VZ2d_2Z67M";
+	private static final String TOKEN = "BKPwyN202k4vzBKsulE4feQljCrsQfAG";
+	private static final String TOKEN_SECRET = "aMpA8Jp4650NxU7v_xEIgEOh9kc";
+	
+	//User Input
+	private LocationPair<String, LocationType> pair;
+	private ArrayList<FoodOption> options;
 }

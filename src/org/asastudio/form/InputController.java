@@ -1,30 +1,25 @@
-package org.asastudio.form;
+package org.asastudio;
 
 import java.util.ArrayList;
 
+import org.asastudio.form.Enumerations.*;
+
 public class InputController 
 {
-	private String rawLocation;
-	private String location;
-	private String[] foodArgs;
 	
-	public enum FoodOption{
-		HEALTHY, FASTFOOD
-	}
-	
-	public enum LocationType{
-		ZIPCODE, ADDRESS
-	}
-	
+	//Constructor
 	public InputController(String location, String[] foodArgs)
 	{
 		rawLocation = location;
 		this.foodArgs = foodArgs;
 	}
 	
-	public String parseLocation(String rawLoc)
+	
+	//Public Methods
+	public LocationPair<String, LocationType> parseLocation(String rawLoc)
 	{
 		String trimmedLoc = rawLoc.trim();							//Removes trailing and preceding spaces
+		String retVal = "";
 		boolean isZipcode = true;
 		
 		if (trimmedLoc.length() == 5)
@@ -36,7 +31,15 @@ public class InputController
 					isZipcode = false;
 				}
 			}
+			retVal = trimmedLoc;
 		}
+		else
+		{
+			isZipcode = false;
+			retVal = trimmedLoc;
+		}
+		
+		return isZipcode ? new LocationPair<String, LocationType>(retVal, LocationType.ZIPCODE) : new LocationPair<String, LocationType>(retVal, LocationType.ADDRESS);
 	}
 	
 	public ArrayList<FoodOption> parseOptions(String[] args)
@@ -54,7 +57,22 @@ public class InputController
 				options.add(FoodOption.FASTFOOD);
 			}
 		}
-		
 		return options;
 	}
+	
+	public void loadDataIntoModel()
+	{
+		System.out.println("Location: " + parseLocation(rawLocation).getLocation());
+		System.out.println("Food Options: ");
+		for (FoodOption option : parseOptions(foodArgs))
+		{
+			System.out.println("\t" + option.toString());
+		}
+		InputModel.getInputModel().setLocationPair(parseLocation(rawLocation));
+		InputModel.getInputModel().setFoodOptions(parseOptions(foodArgs));
+	}
+	
+	//Private Member Variables
+	private String rawLocation;
+	private String[] foodArgs;
 }

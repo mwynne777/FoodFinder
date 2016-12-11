@@ -1,4 +1,4 @@
-package org.asastudio;
+package example;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,11 +22,11 @@ public class javaForm extends HttpServlet {
 			return;
 		}
 		
-		InputController inputController = new InputController(user_location, foodOptions);
+		/*InputController inputController = new InputController(user_location, foodOptions);
 		inputController.loadDataIntoModel();
 		InputModel.getInputModel().getResturaunts();
 		OutputController outputController = new OutputController(resp, OutputModel.getOutputModel().getFilteredRestaurants());
-		outputController.printRestaurants();
+		outputController.printRestaurants();*/
 	}
 	
 }
